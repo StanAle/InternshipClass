@@ -19,4 +19,5 @@ RUN dotnet publish "InternshippClass.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "InternshippClass.dll"]
+#ENTRYPOINT ["dotnet", "InternshippClass.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet InternshippClass.dll
