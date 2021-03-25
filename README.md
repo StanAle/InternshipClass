@@ -16,16 +16,16 @@ dotnet run
 
 ```
 docker build -t mvc .
-docker run -d -p 8080:80 --name internhip_class mvc
+docker run -d -p 8080:80 --name internship_class mvc
 ```
 
 to stop container
 ```
-docker stop internhip_class
+docker stop internship_class
 ```
 to remove container
 ```
-docker rm internhip_class
+docker rm internship_class
 ```
 
 ## Deploy to heroku
