@@ -11,11 +11,13 @@ namespace InternshhipMvc.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly InternshipClass _internshipClass;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _internshipClass = new InternshipClass();
         }
 
         public IActionResult Index()
@@ -25,7 +27,7 @@ namespace InternshhipMvc.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return View(_internshipClass);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
