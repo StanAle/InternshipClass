@@ -4,6 +4,9 @@
 <h1>@ViewData["Title"]</h1>
 
 <body>
+    @section scripts {
+        <script type="text/javascript" src="~/js/default.js"></script>
+    }
     <h1>Internship Landpage</h1>
     <p>Here is our classroom</p>
 
@@ -19,8 +22,9 @@
     </ul>
 
     <input id="newcomer" title="Name" type="text" />
+
     <button id="add" onclick="addNewcomer()">Add new commer</button>
-    <script src="/js/default.js" type="text/javascript"></script>
+
     <p>
         <img src="/images/GoodCodeRules.jpg" />
     </p>
