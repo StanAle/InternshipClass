@@ -24,15 +24,15 @@ $(document).ready(function () {
 
     $(".delete").click(function () {
         var targetMemberTag = $(this).parent('li');
-        var id = targetMemberTag.attr('memberID');
+        var index = targetMemberTag.index(targetMemberTag.parent());
         $.ajax({
-            url: `/Home/RemoveMember/${id}`,
+            url: `/Home/RemoveMember/${index}`,
             type: 'DELETE',
             success: function () {
                 targetMemberTag.remove();
             },
             error: function () {
-                alert(`Failed to delete member with index=${id}`);
+                alert(`Failed to delete member with index=${index}`);
             }
         })
     })
