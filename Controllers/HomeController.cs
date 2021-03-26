@@ -38,6 +38,12 @@ namespace InternshhipMvc.Controllers
             return intershipService.AddMember(member);
         }
 
+        [HttpPut]
+        public void UpdateMember(int index, string name)
+        {
+            intershipService.UpdateMembers(index, name);
+        }
+
         public IActionResult Privacy()
         {
             return View(intershipService.GetClass());
