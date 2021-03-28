@@ -49,11 +49,13 @@ $(document).ready(function () {
     $("#editClassmate").on("click", "#submit", function () {
         var name = $('#classmateName').val();
         var index = $('#editClassmate').attr("memberIndex");
+        var targetMember = $('.name').eq(index);
         console.log(`/Home/UpdateMember?index=${index}&name=${name}`);
         $.ajax({
             url: `/Home/UpdateMember?index=${index}&name=${name}`,
             type: 'PUT',
             success: function () {
+                targetMember.replaceWith(name);
             },
             error: function () {
                 alert(`Failed to replace member ${name}`);
