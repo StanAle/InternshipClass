@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <Compile Remove="InternshipClass.Tests\**" />
+    <Compile Remove="InternshipClass.WebAPI\**" />
     <Content Remove="InternshipClass.Tests\**" />
+    <Content Remove="InternshipClass.WebAPI\**" />
     <EmbeddedResource Remove="InternshipClass.Tests\**" />
+    <EmbeddedResource Remove="InternshipClass.WebAPI\**" />
     <None Remove="*.log" />
     <None Remove="InternshipClass.Tests\**" />
+    <None Remove="InternshipClass.WebAPI\**" />
   </ItemGroup>
   
   <ItemGroup>
@@ -17,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
   </ItemGroup>
   
   <ItemGroup>
