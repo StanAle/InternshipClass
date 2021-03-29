@@ -66,4 +66,20 @@ $(document).ready(function () {
     $("#editClassmate").on("click", "#cancel", function () {
         console.log('cancel changes');
     })
+
+    $.ajax({
+        url: `/WeatherForecast`,
+        success: function (data) {
+            let tommorow = data[0];
+            let tommorowDate = new Date(tommorow.date).toDateString();
+            console.log(tommorow);
+            $('#date').text(tommorowDate);
+            $('#temperature').text(tommorow.temperatureC+' C');
+            $('#summary').text(tommorow.summary);
+
+        },
+        error: function () {
+            alert(`Failed to load data`);
+        }
+    })
 });
