@@ -23,6 +23,11 @@ namespace InternshipMvc.WebApi.Controllers
             _logger = logger;
         }
 
+
+        /// <summary>
+        /// Getting weather forecast for 5 days.
+        /// </summary>
+        /// <returns>Enumerable of weatherForecast objects.</returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
