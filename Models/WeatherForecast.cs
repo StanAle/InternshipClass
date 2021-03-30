@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +10,7 @@ namespace InternshipMvc.WebApi
         public int TemperatureC
         {
             get
-            { 
+            {
                 return (int)(TemperatureK - 273.15);
             }
         }

@@ -17,17 +17,15 @@ namespace InternshipMvc.WebApi.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching",
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
-
 
         /// <summary>
         /// Getting weather forecast for 5 days.
@@ -47,7 +45,8 @@ namespace InternshipMvc.WebApi.Controllers
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
-                //TemperatureC = rng.Next(-20, 55),
+
+                // TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)],
             })
             .ToArray();

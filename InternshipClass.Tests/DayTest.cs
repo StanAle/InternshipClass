@@ -45,6 +45,10 @@ namespace InternshipClass.Tests
 
             // Assert
             Assert.Equal(286.82, weatherForecast.TemperatureK);
+            Assert.Equal(2021, weatherForecast.Date.Year);
+            Assert.Equal(4, weatherForecast.Date.Month);
+            Assert.Equal(1, weatherForecast.Date.Day);
+
         }
     }
 }
