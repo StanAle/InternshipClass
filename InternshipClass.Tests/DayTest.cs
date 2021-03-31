@@ -42,14 +42,11 @@ namespace InternshipClass.Tests
         {
             // Assume
             //https://api.openweathermap.org/data/2.5/onecall?lat=45.75&lon=25.3333&exclude=hourly,minutely&appid=432ab032de75c6c0656eb54a71e44a1d
-            double latitude = 45.75;
-            double longitude = 25.3333;
-            var apiKey = "432ab032de75c6c0656eb54a71e44a1d";
             Microsoft.Extensions.Logging.ILogger<WeatherForecastController> nullLogger = new NullLogger<WeatherForecastController>();
             var weatherForecastController = new WeatherForecastController(nullLogger,configuration);
 
             // Act
-            var weatherForecasts = weatherForecastController.FetchWeatherForecasts(latitude,longitude,apiKey);
+            var weatherForecasts = weatherForecastController.FetchWeatherForecasts();
 
             // Assert
             Assert.Equal(8, weatherForecasts.Count);
