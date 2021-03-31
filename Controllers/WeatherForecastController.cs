@@ -56,19 +56,15 @@ namespace InternshipMvc.WebApi.Controllers
 
         public List<WeatherForecast> ConvertResponseContentToWeatherForecasts(string content)
         {
-            JToken root = JObject.Parse(content);
-            JToken testToken = root["daily"];
-            var forecasts = new List<WeatherForecast>();
-            foreach (var token in testToken)
-            {
-                var forecast = new WeatherForecast();
-                forecast.Date = DateTimeConverter.ConvertEpochToDayTime(long.Parse(token["dt"].ToString()));
-                forecast.TemperatureK = double.Parse(token["temp"]["day"].ToString());
-                forecast.Summary = token["weather"][0]["description"].ToString();
-                forecasts.Add(forecast);
-            }
-
-            return forecasts;
+            var root = JObject.Parse(content);
+            var testToken = root["daily"];
+            return (from token in testToken
+                    select new WeatherForecast
+                    {
+                        Date = DateTimeConverter.ConvertEpochToDayTime(long.Parse(token["dt"].ToString())),
+                        TemperatureK = double.Parse(token["temp"]["day"].ToString()),
+                        Summary = token["weather"][0]["description"].ToString(),
+                    }).ToList();
         }
     }
 }
