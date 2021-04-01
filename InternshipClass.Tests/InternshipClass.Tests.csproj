@@ -23,4 +23,10 @@
     <ProjectReference Include="..\InternshippClass.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="weatherForecast.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
