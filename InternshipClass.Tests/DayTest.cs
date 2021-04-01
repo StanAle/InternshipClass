@@ -10,6 +10,7 @@ using InternshipMvc.WebApi.Controllers;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Reflection;
 
 namespace InternshipClass.Tests
 {
@@ -56,15 +57,28 @@ namespace InternshipClass.Tests
         public void ConvertWeatherJasonToWeatherForecast()
         {
             // Assume
-            string path = "weatherForecast.json";
-            string content = File.ReadAllText(path);
+            string content = GetStringFromStream();
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
+
             // Act
             var weatherForecasts = weatherForecastController.ConvertResponseContentToWeatherForecasts(content);
             WeatherForecast weatherForecast = weatherForecasts[1];
 
             // Assert
             Assert.Equal(285.39, weatherForecast.TemperatureK);
+        }
+
+        private string GetStringFromStream()
+        {
+            var assembly = this.GetType().Assembly;
+            var content = String.Empty;
+            using (Stream stream = assembly.GetManifestResourceStream("InternshipClass.Tests.weatherForecast.json"))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                content = reader.ReadToEnd();
+            }
+
+            return content;
         }
 
         private WeatherForecastController InstantiateWeatherForecastController()
