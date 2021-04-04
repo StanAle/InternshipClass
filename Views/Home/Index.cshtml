@@ -1,7 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<InternshippClass.Models.Intern>
 
-<div class="text-center">
-    <h1 class="display-4">welcome</h1>
-</div>
+@{ ViewData["Title"] = "Loading interns from the database"; }
+<h1>@ViewData["Title"]</h1>
+
+<p>welcome</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDateTime)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationDateTime)
+                </td>
+            </tr>
+}
+    </tbody>
+</table>

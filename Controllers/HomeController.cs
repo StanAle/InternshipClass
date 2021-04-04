@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshippClass.Data;
 using InternshippClass.Models;
 using InternshippClass.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace InternshhipMvc.Controllers
+namespace InternshippClass.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly InternshipService intershipService;
+        private readonly InternDbContext db;
 
-        public HomeController(ILogger<HomeController> logger, InternshipService intershipService)
+        public HomeController(ILogger<HomeController> logger, InternshipService intershipService, InternDbContext db)
         {
             _logger = logger;
             this.intershipService = intershipService;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var interns = db.Interns.ToList();
+            return View(interns);
         }
 
         [HttpDelete]

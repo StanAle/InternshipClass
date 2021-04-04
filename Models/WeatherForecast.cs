@@ -1,6 +1,6 @@
 using System;
 
-namespace InternshipMvc.WebApi
+namespace InternshippClass.WebApi
 {
     public class WeatherForecast
     {

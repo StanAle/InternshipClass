@@ -10,7 +10,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace InternshipMvc.WebApi.Controllers
+
+namespace InternshippClass.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
