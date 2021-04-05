@@ -11,6 +11,6 @@ namespace InternshippClass.Services
 
         void RemoveMember(int id);
 
-        void UpdateMembers(int id, string memberName);
+        void UpdateMembers(Intern intern);
     }
 }

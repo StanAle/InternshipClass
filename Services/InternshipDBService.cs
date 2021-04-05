@@ -37,9 +37,10 @@ namespace InternshippClass.Services
             db.SaveChanges();
         }
 
-        public void UpdateMembers(int id, string memberName)
+        public void UpdateMembers(Intern intern)
         {
-            throw new NotImplementedException();
+            db.Update<Intern>(intern);
+            db.SaveChanges();
         }
     }
 }

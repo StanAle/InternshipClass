@@ -46,9 +46,15 @@ namespace InternshippClass.Controllers
         }
 
         [HttpPut]
-        public void UpdateMember(int id, string name)
+        public void UpdateMember(int id, string memberName)
         {
-            intershipService.UpdateMembers(id, name);
+            var intern = new Intern
+            {
+                Id = id,
+                Name = memberName,
+                RegistrationDateTime = DateTime.Now,
+            };
+            intershipService.UpdateMembers(intern);
         }
 
         public IActionResult Privacy()

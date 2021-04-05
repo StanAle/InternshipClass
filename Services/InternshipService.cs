@@ -30,10 +30,10 @@ namespace InternshippClass.Services
             return _internshipClass.Members;
         }
 
-        public void UpdateMembers(int id, string memberName)
+        public void UpdateMembers(Intern intern)
         {
-            var itemToBeUpdated = _internshipClass.Members.SingleOrDefault(_ => _.Id == id);
-            itemToBeUpdated.Name = memberName;
+            var itemToBeUpdated = _internshipClass.Members.Single(_ => _.Id == intern.Id);
+            itemToBeUpdated.Name = intern.Name;
         }
     }
 }
