@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using InternshippClass.Data;
 using InternshippClass.Services;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +34,7 @@ namespace InternshippClass
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllersWithViews();
-            services.AddSingleton(typeof(InternshipService));
+            services.AddScoped<IInternshipService, InternshipDBService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternshipClass.WebAPI", Version = "v1" });

@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#add").click(function () {
         var newcomerName = $("#newcomer").val();
         $.ajax({
-            url: `/Home/AddMember?member=${newcomerName}`,
+            url: `/Home/AddMember?memberName=${newcomerName}`,
             success: function (data) {
                 // Remember string interpolation
                 $("#list").append(`<li class="member" member-id="${data}">

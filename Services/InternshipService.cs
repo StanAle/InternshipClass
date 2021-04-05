@@ -6,9 +6,9 @@ using InternshippClass.Models;
 
 namespace InternshippClass.Services
 {
-    public class InternshipService
+    public class InternshipService : IInternshipService
     {
-        private readonly InternshipClass _internshipClass = new ();
+        private readonly InternshipClass _internshipClass = new();
 
         public void RemoveMember(int id)
         {
@@ -16,13 +16,13 @@ namespace InternshippClass.Services
             _internshipClass.Members.Remove(itemToBeDeleted);
         }
 
-        public int AddMember(Intern intern)
+        public Intern AddMember(Intern intern)
         {
             var maxId = _internshipClass.Members.Max(_ => _.Id);
             var newId = maxId + 1;
             intern.Id = newId;
             _internshipClass.Members.Add(intern);
-            return intern.Id;
+            return intern;
         }
 
         public IList<Intern> GetMembers()
@@ -30,9 +30,9 @@ namespace InternshippClass.Services
             return _internshipClass.Members;
         }
 
-        internal void UpdateMembers(int id, string memberName)
+        public void UpdateMembers(int id, string memberName)
         {
-            var itemToBeUpdated=_internshipClass.Members.SingleOrDefault(_ => _.Id == id);
+            var itemToBeUpdated = _internshipClass.Members.SingleOrDefault(_ => _.Id == id);
             itemToBeUpdated.Name = memberName;
         }
     }

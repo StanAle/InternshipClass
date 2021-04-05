@@ -14,10 +14,10 @@ namespace InternshippClass.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly InternshipService intershipService;
+        private readonly IInternshipService intershipService;
         private readonly InternDbContext db;
 
-        public HomeController(ILogger<HomeController> logger, InternshipService intershipService, InternDbContext db)
+        public HomeController(ILogger<HomeController> logger, IInternshipService intershipService, InternDbContext db)
         {
             _logger = logger;
             this.intershipService = intershipService;
@@ -37,11 +37,13 @@ namespace InternshippClass.Controllers
         }
 
         [HttpGet]
-        public int AddMember(string memberName)
+        public Intern AddMember(string memberName)
         {
+            
             Intern intern = new Intern
             {
                 Name = memberName,
+                RegistrationDateTime = DateTime.Now,
             };
             return intershipService.AddMember(intern);
         }
