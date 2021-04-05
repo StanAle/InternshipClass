@@ -10,13 +10,17 @@ namespace InternshippClass.Services
     {
         private readonly InternshipClass _internshipClass = new ();
 
-        public void RemoveMember(int index)
+        public void RemoveMember(int id)
         {
-            _internshipClass.Members.RemoveAt(index);
+            var itemToBeDeleted = _internshipClass.Members.Single(_ => _.Id == id);
+            _internshipClass.Members.Remove(itemToBeDeleted);
         }
 
         public int AddMember(Intern intern)
         {
+            var maxId = _internshipClass.Members.Max(_ => _.Id);
+            var newId = maxId + 1;
+            intern.Id = newId;
             _internshipClass.Members.Add(intern);
             return intern.Id;
         }

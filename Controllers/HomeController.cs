@@ -31,9 +31,9 @@ namespace InternshippClass.Controllers
         }
 
         [HttpDelete]
-        public void RemoveMember(int index)
+        public void RemoveMember(int id)
         {
-            intershipService.RemoveMember(index);
+            intershipService.RemoveMember(id);
         }
 
         [HttpGet]

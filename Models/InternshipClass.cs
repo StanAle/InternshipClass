@@ -13,7 +13,7 @@ namespace InternshippClass.Models
         {
             _members = new List<Intern> 
             {
-                 new Intern { Name = "Vlas", RegistrationDateTime = DateTime.Parse("2021-04-04") },
+                 new Intern { Name = "Vlad", RegistrationDateTime = DateTime.Parse("2021-04-04") },
                 new Intern { Name = "Radu", RegistrationDateTime = DateTime.Parse("2021-04-04") },
                 new Intern { Name = "Giulia", RegistrationDateTime = DateTime.Parse("2021-03-04") },
             };
