@@ -21,14 +21,15 @@ namespace InternshippClass.Services
             return intern.Id;
         }
 
-        public InternshipClass GetClass()
+        public IList<Intern> GetMembers()
         {
-            return _internshipClass;
+            return _internshipClass.Members;
         }
 
-        internal void UpdateMembers(Intern intern)
+        internal void UpdateMembers(int id, string memberName)
         {
-            _internshipClass.Members[intern.Id] = intern;
+            var itemToBeUpdated=_internshipClass.Members.SingleOrDefault(_ => _.Id == id);
+            itemToBeUpdated.Name = memberName;
         }
     }
 }

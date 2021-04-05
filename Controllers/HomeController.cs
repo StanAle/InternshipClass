@@ -37,20 +37,24 @@ namespace InternshippClass.Controllers
         }
 
         [HttpGet]
-        public string AddMember(string member)
+        public int AddMember(string memberName)
         {
-            return intershipService.AddMember(member);
+            Intern intern = new Intern
+            {
+                Name = memberName,
+            };
+            return intershipService.AddMember(intern);
         }
 
         [HttpPut]
-        public void UpdateMember(int index, string name)
+        public void UpdateMember(int id, string name)
         {
-            intershipService.UpdateMembers(index, name);
+            intershipService.UpdateMembers(id, name);
         }
 
         public IActionResult Privacy()
         {
-            return View(intershipService.GetClass());
+            return View(intershipService.GetMembers());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
