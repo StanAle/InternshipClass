@@ -32,7 +32,9 @@ namespace InternshippClass.Services
 
         public void RemoveMember(int id)
         {
-            throw new NotImplementedException();
+            var intern = db.Find<Intern>(id);
+            db.Remove<Intern>(intern);
+            db.SaveChanges();
         }
 
         public void UpdateMembers(int id, string memberName)

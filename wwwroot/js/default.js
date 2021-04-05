@@ -26,8 +26,8 @@ $(document).ready(function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('member-id');
         $.ajax({
-            url: `/Home/RemoveMember/${id}`,
-            type: 'DELETE',
+            method: "DELETE",
+            url: `/Home/RemoveMember?id=${id}`,
             success: function () {
                 targetMemberTag.remove();
             },
