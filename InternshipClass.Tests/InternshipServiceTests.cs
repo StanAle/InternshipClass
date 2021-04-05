@@ -1,5 +1,7 @@
+using InternshippClass.Models;
 using InternshippClass.Services;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace InternshipClass.Tests
@@ -23,13 +25,17 @@ namespace InternshipClass.Tests
         {
             // Assume
             var intershipService = new InternshipService();
+            Intern intern = new Intern
+            {
+                Name = "Marko",
+            };
 
             // Act
-            intershipService.AddMember("Marko");
+            intershipService.AddMember(intern);
 
             // Assert
             Assert.Equal(4, intershipService.GetClass().Members.Count);
-            Assert.Contains("Marko", intershipService.GetClass().Members);
+            Assert.Contains("Marko", intershipService.GetClass().Members.Select(member => member.Name));
         }
     }
 }

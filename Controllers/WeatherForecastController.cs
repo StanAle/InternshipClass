@@ -57,6 +57,8 @@ namespace InternshippClass.WebApi.Controllers
 
         public List<WeatherForecast> ConvertResponseContentToWeatherForecasts(string content)
         {
+
+            //TODO: Content sometimes is an empty string
             var root = JObject.Parse(content);
             var testToken = root["daily"];
             return (from token in testToken
