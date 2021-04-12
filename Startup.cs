@@ -36,6 +36,7 @@ namespace InternshippClass
 
             services.AddControllersWithViews();
             services.AddScoped<IInternshipService, InternshipDBService>();
+            services.AddSingleton<MessageService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternshipClass.WebAPI", Version = "v1" });
