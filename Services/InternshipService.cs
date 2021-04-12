@@ -35,5 +35,10 @@ namespace InternshippClass.Services
             var itemToBeUpdated = _internshipClass.Members.Single(_ => _.Id == intern.Id);
             itemToBeUpdated.Name = intern.Name;
         }
+
+        public void SubscribeToAddMember(IAddMemberSubscriber messageHub)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

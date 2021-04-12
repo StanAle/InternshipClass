@@ -1,4 +1,5 @@
-﻿using InternshippClass.Models;
+﻿using InternshippClass.Hubs;
+using InternshippClass.Models;
 using System.Collections.Generic;
 
 namespace InternshippClass.Services
@@ -12,5 +13,6 @@ namespace InternshippClass.Services
         void RemoveMember(int id);
 
         void UpdateMembers(Intern intern);
+        void SubscribeToAddMember(IAddMemberSubscriber messageHub);
     }
 }

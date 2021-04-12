@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace InternshippClass.Hubs
 {
-    public class MessageHub : Hub
+    public class MessageHub : Hub, IAddMemberSubscriber
     {
         private readonly MessageService messageService;
-        public MessageHub(MessageService messageService)
+        private readonly IInternshipService internshipService;
+        public MessageHub(MessageService messageService, IInternshipService internshipService)
         {
             this.messageService = messageService;
+            this.internshipService = internshipService;
+            internshipService.SubscribeToAddMember(this);
         }
 
         public async Task SendMessage(string user, string message)

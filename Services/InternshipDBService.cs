@@ -1,4 +1,5 @@
 ﻿using InternshippClass.Data;
+using InternshippClass.Hubs;
 using InternshippClass.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace InternshippClass.Services
     public class InternshipDBService : IInternshipService
     {
         private readonly InternDbContext db;
+        private readonly List<IAddMemberSubscriber> subscribers;
 
         public InternshipDBService(InternDbContext db)
         {
             this.db = db;
+            subscribers = new List<IAddMemberSubscriber>();
         }
 
         public Intern AddMember(Intern intern)
@@ -41,6 +44,11 @@ namespace InternshippClass.Services
         {
             db.Update<Intern>(intern);
             db.SaveChanges();
+        }
+
+        public void SubscribeToAddMember(IAddMemberSubscriber messageHub)
+        {
+            subscribers.Add(messageHub);
         }
     }
 }
