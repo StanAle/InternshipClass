@@ -62,6 +62,11 @@ namespace InternshippClass.Controllers
             return View(intershipService.GetMembers());
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
