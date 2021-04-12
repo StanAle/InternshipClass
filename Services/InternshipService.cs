@@ -36,7 +36,7 @@ namespace InternshippClass.Services
             itemToBeUpdated.Name = intern.Name;
         }
 
-        public void SubscribeToAddMember(IAddMemberSubscriber messageHub)
+        public void SubscribeToAddMember(IAddMemberSubscriber subscriber)
         {
             throw new NotImplementedException();
         }

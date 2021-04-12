@@ -24,6 +24,7 @@ namespace InternshippClass.Services
         {
             db.Interns.AddRange(intern);
             db.SaveChanges();
+            subscribers.ForEach(subscriber => subscriber.OnAddMember(intern));
             return intern;
         }
 
@@ -46,9 +47,9 @@ namespace InternshippClass.Services
             db.SaveChanges();
         }
 
-        public void SubscribeToAddMember(IAddMemberSubscriber messageHub)
+        public void SubscribeToAddMember(IAddMemberSubscriber subscriber)
         {
-            subscribers.Add(messageHub);
+            subscribers.Add(subscriber);
         }
     }
 }

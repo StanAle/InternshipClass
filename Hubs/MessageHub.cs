@@ -19,11 +19,17 @@ namespace InternshippClass.Hubs
             internshipService.SubscribeToAddMember(this);
         }
 
+        public async void OnAddMember(Intern member)
+        {
+            await Clients.All.SendAsync("AddMember", member.Name, member.Id);
+        }
+
         public async Task SendMessage(string user, string message)
         {
             Message messageObj = new Message(user, message);
             messageService.AddMessage(messageObj);
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
+
     }
 }
