@@ -14,6 +14,5 @@ namespace InternshippClass.Services
 
         void UpdateMembers(Intern intern);
 
-        void SubscribeToAddMember(IAddMemberSubscriber subscriber);
     }
 }

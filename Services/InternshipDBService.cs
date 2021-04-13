@@ -12,19 +12,16 @@ namespace InternshippClass.Services
     public class InternshipDBService : IInternshipService
     {
         private readonly InternDbContext db;
-        private readonly List<IAddMemberSubscriber> subscribers;
 
         public InternshipDBService(InternDbContext db)
         {
             this.db = db;
-            subscribers = new List<IAddMemberSubscriber>();
         }
 
         public Intern AddMember(Intern intern)
         {
             db.Interns.AddRange(intern);
             db.SaveChanges();
-            subscribers.ForEach(subscriber => subscriber.OnAddMember(intern));
             return intern;
         }
 
@@ -45,11 +42,6 @@ namespace InternshippClass.Services
         {
             db.Update<Intern>(intern);
             db.SaveChanges();
-        }
-
-        public void SubscribeToAddMember(IAddMemberSubscriber subscriber)
-        {
-            subscribers.Add(subscriber);
         }
     }
 }
