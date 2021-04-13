@@ -14,5 +14,6 @@ namespace InternshippClass.Services
 
         void UpdateMembers(Intern intern);
 
+        Intern GetMemberById(int id);
     }
 }

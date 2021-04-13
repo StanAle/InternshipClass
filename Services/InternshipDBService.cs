@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace InternshippClass.Services
 {
-
     public class InternshipDBService : IInternshipService
     {
         private readonly InternDbContext db;
@@ -25,6 +24,11 @@ namespace InternshippClass.Services
             return intern;
         }
 
+        public Intern GetMemberById(int id)
+        {
+            return db.Find<Intern>(id);
+        }
+
         public IList<Intern> GetMembers()
         {
             var interns = db.Interns.ToList();
@@ -33,7 +37,7 @@ namespace InternshippClass.Services
 
         public void RemoveMember(int id)
         {
-            var intern = db.Find<Intern>(id);
+            var intern = GetMemberById(id);
             db.Remove<Intern>(intern);
             db.SaveChanges();
         }
@@ -41,6 +45,7 @@ namespace InternshippClass.Services
         public void UpdateMembers(Intern intern)
         {
             db.Update<Intern>(intern);
+            intern.RegistrationDateTime = DateTime.Now;
             db.SaveChanges();
         }
     }

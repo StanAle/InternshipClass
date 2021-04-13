@@ -4,7 +4,12 @@ $(document).ready(function () {
     $("#add").click(function () {
         var newcomerName = $("#newcomer").val();
         $.ajax({
-            url: `/Home/AddMember?memberName=${newcomerName}`,
+            contentType: "application/json",
+            data: JSON.stringify({
+                "Name": `${newcomerName}`
+            }),
+            method: "POST",
+            url: `/api/Internship`,
             success: function (data) {
                 $("#newcomer").val("");
             },
@@ -22,8 +27,9 @@ $(document).ready(function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('member-id');
         $.ajax({
-            method: "DELETE",
-            url: `/Home/RemoveMember?id=${id}`,
+            contentType: "application/json",
+            type: "DELETE",
+            url: `/api/Internship/${id}`,
             success: function () {
                 targetMemberTag.remove();
             },
@@ -45,10 +51,13 @@ $(document).ready(function () {
         var name = $('#classmateName').val();
         var id = $('#editClassmate').attr("member-id");
         var targetMember = $('.name').eq(id);
-        console.log(`/Home/UpdateMember?id=${id}&memberName=${name}`);
         $.ajax({
-            url: `/Home/UpdateMember?id=${id}&memberName=${name}`,
-            type: 'PUT',
+            contentType: "application/json",
+            data: JSON.stringify({
+                "Name": `${name}`
+            }),
+            type: "PUT",
+            url: `/api/Internship/${id}`,
             success: function () {
                 targetMember.replaceWith(name);
             },

@@ -12,7 +12,7 @@ namespace InternshippClass.Services
 
         public void RemoveMember(int id)
         {
-            var itemToBeDeleted = _internshipClass.Members.Single(_ => _.Id == id);
+            var itemToBeDeleted = GetMemberById(id);
             _internshipClass.Members.Remove(itemToBeDeleted);
         }
 
@@ -32,9 +32,13 @@ namespace InternshippClass.Services
 
         public void UpdateMembers(Intern intern)
         {
-            var itemToBeUpdated = _internshipClass.Members.Single(_ => _.Id == intern.Id);
+            var itemToBeUpdated = GetMemberById(intern.Id);
             itemToBeUpdated.Name = intern.Name;
         }
 
+        public Intern GetMemberById(int id)
+        {
+            return _internshipClass.Members.Single(_ => _.Id == id);
+        }
     }
 }
