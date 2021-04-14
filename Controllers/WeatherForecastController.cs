@@ -42,6 +42,7 @@ namespace InternshippClass.WebApi.Controllers
             return weatherForcasts.GetRange(1, 5);
         }
 
+        [HttpGet ("/Forecast")]
         public List<WeatherForecast> FetchWeatherForecasts()
         {
             double latitude = double.Parse(configuration["WeatherForecast:Latitude"]);
@@ -55,6 +56,7 @@ namespace InternshippClass.WebApi.Controllers
             return ConvertResponseContentToWeatherForecasts(response.Content);
         }
 
+        [NonAction]
         public List<WeatherForecast> ConvertResponseContentToWeatherForecasts(string content)
         {
 
