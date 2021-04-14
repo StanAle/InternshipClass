@@ -30,9 +30,6 @@ $(document).ready(function () {
             contentType: "application/json",
             type: "DELETE",
             url: `/api/Internship/${id}`,
-            success: function () {
-                //targetMemberTag.remove();
-            },
             error: function () {
                 alert(`Failed to delete member with id=${id}`);
             }
@@ -70,6 +67,7 @@ $(document).ready(function () {
     $("#editClassmate").on("click", "#cancel", function () {
         console.log('cancel changes');
     })
+
     function refreshWeatherForecast() {
         $.ajax({
             url: `/WeatherForecast`,
