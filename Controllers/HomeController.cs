@@ -34,37 +34,6 @@ namespace InternshippClass.Controllers
             return View(interns);
         }
 
-        [HttpDelete]
-        public void RemoveMember(int id)
-        {
-            intershipService.RemoveMember(id);
-        }
-
-        [HttpGet]
-        public Intern AddMember(string memberName)
-        {
-            Intern intern = new Intern
-            {
-                Name = memberName,
-                RegistrationDateTime = DateTime.Now,
-            };
-            var newMember = intershipService.AddMember(intern);
-            hubContext.Clients.All.SendAsync("AddMember", newMember.Name, newMember.Id);
-            return newMember;
-        }
-
-        [HttpPut]
-        public void UpdateMember(int id, string memberName)
-        {
-            var intern = new Intern
-            {
-                Id = id,
-                Name = memberName,
-                RegistrationDateTime = DateTime.Now,
-            };
-            intershipService.UpdateMembers(intern);
-        }
-
         public IActionResult Privacy()
         {
             return View(intershipService.GetMembers());
