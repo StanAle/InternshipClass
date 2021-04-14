@@ -47,7 +47,6 @@ $(document).ready(function () {
     $("#editClassmate").on("click", "#submit", function () {
         var name = $('#classmateName').val();
         var id = $('#editClassmate').attr("member-id");
-        var targetMember = $('.name').eq(id);
         $.ajax({
             contentType: "application/json",
             data: JSON.stringify({
@@ -55,9 +54,6 @@ $(document).ready(function () {
             }),
             type: "PUT",
             url: `/api/Internship/${id}`,
-            success: function () {
-                targetMember.replaceWith(name);
-            },
             error: function () {
                 alert(`Failed to replace member ${name}`);
             }

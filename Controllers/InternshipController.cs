@@ -53,6 +53,7 @@ namespace InternshippClass.Controllers
         {
             intern.Id = id;
             intershipService.UpdateMembers(intern);
+            hubContext.Clients.All.SendAsync("UpdateMember", intern.Name, intern.Id);
         }
 
         // DELETE api/<InternshipController>/5
