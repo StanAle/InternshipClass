@@ -60,6 +60,7 @@ namespace InternshippClass.Controllers
         public void Delete(int id)
         {
             intershipService.RemoveMember(id);
+            hubContext.Clients.All.SendAsync("RemoveMember", id);
         }
     }
 }

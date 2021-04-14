@@ -31,7 +31,7 @@ $(document).ready(function () {
             type: "DELETE",
             url: `/api/Internship/${id}`,
             success: function () {
-                targetMemberTag.remove();
+                //targetMemberTag.remove();
             },
             error: function () {
                 alert(`Failed to delete member with id=${id}`);
