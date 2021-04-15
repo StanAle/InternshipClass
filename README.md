@@ -1,6 +1,12 @@
 # InternshipClass
 
 The infrastructure inspiration got [here](https://dev.to/alrobilliard/deploying-net-core-to-heroku-1lfe) 
+
+##Prerequisites
+
+To work with this application you need to install:
+*[postgres](https://www.postgresql.org/download/) - database engine for the aplication
+
 ## Build and run locally
 
 ```
