@@ -21,12 +21,17 @@ namespace InternshippClass.WebApi.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IConfiguration configuration;
+        private readonly double latitude;
+        private readonly double longitude;
+        private readonly string apiKey;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            this.configuration = configuration;
+
+            this.latitude = double.Parse(configuration["WeatherForecast:Latitude"], CultureInfo.InvariantCulture);
+            this.longitude = double.Parse(configuration["WeatherForecast:Longitude"], CultureInfo.InvariantCulture);
+            this.apiKey = configuration["WeatherForecast:ApiKey"];
         }
 
         /// <summary>
@@ -34,18 +39,15 @@ namespace InternshippClass.WebApi.Controllers
         /// </summary>
         /// <returns>Enumerable of weatherForecast objects.</returns>
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public List<WeatherForecast> Get()
         {
-            List<WeatherForecast> weatherForcasts = FetchWeatherForecasts();
+            List<WeatherForecast> weatherForcasts = Get(this.latitude, this.longitude);
             return weatherForcasts.GetRange(1, 5);
         }
 
         [HttpGet("/Forecast")]
-        public List<WeatherForecast> FetchWeatherForecasts()
+        public List<WeatherForecast> Get(double latitude, double logiude)
         {
-            double latitude = double.Parse(configuration["WeatherForecast:Latitude"], CultureInfo.InvariantCulture);
-            double longitude = double.Parse(configuration["WeatherForecast:Longitude"], CultureInfo.InvariantCulture);
-            var apiKey = configuration["WeatherForecast:ApiKey"];
             var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);

@@ -47,10 +47,10 @@ namespace InternshipClass.Tests
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
 
             // Act
-            var weatherForecasts = weatherForecastController.FetchWeatherForecasts();
+            var weatherForecasts = weatherForecastController.Get();
 
             // Assert
-            Assert.Equal(8, weatherForecasts.Count);
+            Assert.Equal(5, weatherForecasts.Count);
         } 
         
         [Fact]
@@ -65,7 +65,7 @@ namespace InternshipClass.Tests
             WeatherForecast weatherForecast = weatherForecasts[1];
 
             // Assert
-            Assert.Equal(285.39, weatherForecast.TemperatureK);
+            Assert.True(weatherForecast.TemperatureK>0, "Kelvin temperature cannot be <0, please check openweathermap.org.");
         }
 
         private string GetStringFromStream()
