@@ -57,7 +57,7 @@ namespace InternshipClass.Tests
         public void ConvertWeatherJasonToWeatherForecast()
         {
             // Assume
-            string content = GetStringFromStream();
+            string content = GetStringFromStream("weatherForecast");
             WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
 
             // Act
@@ -68,11 +68,24 @@ namespace InternshipClass.Tests
             Assert.True(weatherForecast.TemperatureK>0, "Kelvin temperature cannot be <0, please check openweathermap.org.");
         }
 
-        private string GetStringFromStream()
+        [Fact]
+
+        public void ShouldHandleJsonErrorFromOpenWeatherAPI()
+        {
+            // Assume
+            string content = GetStringFromStream("weatherForecast_exception");
+            WeatherForecastController weatherForecastController = InstantiateWeatherForecastController();
+
+            //Act & Assert
+            Assert.Throws<Exception>(() => weatherForecastController.ConvertResponseContentToWeatherForecasts(content));
+
+        }
+
+        private string GetStringFromStream(string resourceName)
         {
             var assembly = this.GetType().Assembly;
             var content = String.Empty;
-            using (Stream stream = assembly.GetManifestResourceStream("InternshipClass.Tests.weatherForecast.json"))
+            using (Stream stream = assembly.GetManifestResourceStream($"InternshipClass.Tests.{resourceName}.json"))
             using (StreamReader reader = new StreamReader(stream))
             {
                 content = reader.ReadToEnd();

@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <None Remove="weatherForecast.json" />
+    <None Remove="weatherForecast_exception.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="weatherForecast.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="weatherForecast_exception.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -62,6 +62,13 @@ namespace InternshippClass.WebApi.Controllers
             // TODO: Content sometimes is an empty string
             var root = JObject.Parse(content);
             var testToken = root["daily"];
+            if (testToken == null)
+            {
+                var codToken = root["cod"];
+                var messageToken = root["message"];
+                throw new Exception($"Weather API doesn't work. Please check that you can run the Weather API:{messageToken}({codToken})");
+            }
+
             return (from token in testToken
                     select new WeatherForecast
                     {
