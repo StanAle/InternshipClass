@@ -17,13 +17,14 @@ namespace InternshippClass
     public class Startup
     {
         private string connectionString;
-        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             connectionString = env.IsDevelopment() ? Configuration.GetConnectionString("DefaultConnection") : GetConnectionString();
         }
+
+        public IConfiguration Configuration { get; }
 
         public static string ConvertDatabaseUrlToHerokuString(string envDatabaseUrl)
         {
@@ -92,6 +93,7 @@ namespace InternshippClass
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
         }
+
         private string GetConnectionString()
         {
             var envDbUrl = Environment.GetEnvironmentVariable("DATABASE_URL");

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using InternshippClass.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-
 
 namespace InternshippClass.WebApi.Controllers
 {
@@ -42,11 +40,11 @@ namespace InternshippClass.WebApi.Controllers
             return weatherForcasts.GetRange(1, 5);
         }
 
-        [HttpGet ("/Forecast")]
+        [HttpGet("/Forecast")]
         public List<WeatherForecast> FetchWeatherForecasts()
         {
-            double latitude = double.Parse(configuration["WeatherForecast:Latitude"]);
-            double longitude = double.Parse(configuration["WeatherForecast:Longitude"]);
+            double latitude = double.Parse(configuration["WeatherForecast:Latitude"], CultureInfo.InvariantCulture);
+            double longitude = double.Parse(configuration["WeatherForecast:Longitude"], CultureInfo.InvariantCulture);
             var apiKey = configuration["WeatherForecast:ApiKey"];
             var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
             client.Timeout = -1;
@@ -59,8 +57,7 @@ namespace InternshippClass.WebApi.Controllers
         [NonAction]
         public List<WeatherForecast> ConvertResponseContentToWeatherForecasts(string content)
         {
-
-            //TODO: Content sometimes is an empty string
+            // TODO: Content sometimes is an empty string
             var root = JObject.Parse(content);
             var testToken = root["daily"];
             return (from token in testToken
