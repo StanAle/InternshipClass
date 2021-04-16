@@ -37,7 +37,7 @@ namespace InternshippClass.WebApi.Controllers
         /// <summary>
         /// Getting weather forecast for 5 days.
         /// </summary>
-        /// <returns>Enumerable of weatherForecast objects.</returns>
+        /// <returns>List of weatherForecast objects.</returns>
         [HttpGet]
         public List<WeatherForecast> Get()
         {
@@ -45,6 +45,12 @@ namespace InternshippClass.WebApi.Controllers
             return weatherForcasts.GetRange(1, 5);
         }
 
+        /// <summary>
+        /// Getting weather forecast for today + 7 days ahead for a specific location
+        /// </summary>
+        /// <param name="latitude">In range -90 and 90. For example: latitude for Brasov is 45.75</param>
+        /// <param name="logiude">In range -180 and 180. For example: longitude for Brasov is 25.3333</param>
+        /// <returns>List of weatherForecast objects.</returns>
         [HttpGet("/Forecast")]
         public List<WeatherForecast> Get(double latitude, double logiude)
         {
