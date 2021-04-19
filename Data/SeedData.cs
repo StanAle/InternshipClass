@@ -1,4 +1,5 @@
 ﻿using InternshippClass.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -8,8 +9,7 @@ namespace InternshippClass.Data
     {
         public static void Initialize(InternDbContext context)
         {
-            context.Database.EnsureCreated();
-
+            context.Database.Migrate();
             if (context.Interns.Any())
             {
                 return;   // DB has been seeded

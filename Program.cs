@@ -38,8 +38,7 @@ namespace InternshippClass
                     {
                         logger.LogDebug("User requested to recreate Database.");
                         context.Database.EnsureDeleted();
-                        context.Database.EnsureCreated();
-                        logger.LogWarning("Database was recreated.");
+                        logger.LogWarning("Database was removed.");
                     }
 
                     SeedData.Initialize(context);
