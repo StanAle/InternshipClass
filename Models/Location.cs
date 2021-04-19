@@ -5,15 +5,19 @@ using System.Threading.Tasks;
 
 namespace InternshippClass.Models
 {
-    public class Intern
+    public class Location
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public DateTime RegistrationDateTime { get; set; }
+        public string NativeName { get; internal set; }
 
-        public Location Location { get; set; }
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public List<Intern> LocalInterns { get; set; }
 
     }
 }
