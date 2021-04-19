@@ -17,31 +17,35 @@ namespace InternshippClass
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
+            bool recreateDb = args.Contains("--recreateDb");
+            InitializeDb(host, recreateDb);
 
             host.Run();
         }
 
-        private static void CreateDbIfNotExists(IHost host)
+        private static void InitializeDb(IHost host, bool recreateDb)
         {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
                 try
                 {
                     var context = services.GetRequiredService<InternDbContext>();
                     var webHostEnv = services.GetRequiredService<IWebHostEnvironment>();
-                    if (webHostEnv.IsDevelopment())
+                    if (webHostEnv.IsDevelopment() && recreateDb)
                     {
+                        logger.LogDebug("User requested to recreate Database.");
                         context.Database.EnsureDeleted();
                         context.Database.EnsureCreated();
+                        logger.LogWarning("Database was recreated.");
                     }
 
                     SeedData.Initialize(context);
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred creating the DB.");
                 }
             }
