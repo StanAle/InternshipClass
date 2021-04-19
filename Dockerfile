@@ -20,4 +20,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "InternshippClass.dll"]
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet InternshippClass.dll
+CMD ASPNETCORE_URLS=http://*:$PORT DATABASE_URI=postgres://ptghsrqecfmzdl:39e2f2b5d61eeb981b7a8f8b715bf1619a7985a26d26a39d4c0a0fbe90cb533e@ec2-54-228-139-34.eu-west-1.compute.amazonaws.com:5432/dbfivm0lgfkfoo dotnet InternshippClass.dll

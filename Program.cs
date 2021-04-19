@@ -30,6 +30,13 @@ namespace InternshippClass
                 try
                 {
                     var context = services.GetRequiredService<InternDbContext>();
+                    var webHostEnv = services.GetRequiredService<IWebHostEnvironment>();
+                    if (webHostEnv.IsDevelopment())
+                    {
+                        context.Database.EnsureDeleted();
+                        context.Database.EnsureCreated();
+                    }
+
                     SeedData.Initialize(context);
                 }
                 catch (Exception ex)
