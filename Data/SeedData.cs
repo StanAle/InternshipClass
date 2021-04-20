@@ -12,7 +12,7 @@ namespace InternshippClass.Data
         public static void Initialize(InternDbContext context)
         {
             context.Database.Migrate();
-            if (context.Interns.Any())
+            if (!context.Locations.Any())
             {
                 return;   // DB has been seeded
             }
@@ -23,15 +23,18 @@ namespace InternshippClass.Data
                 new Location { Name = "Brasov", NativeName = "Braşov", Longitude = 25.3333, Latitude = 45.75, },
             };
             context.Locations.AddRange(locations);
-
-            var interns = new Intern[]
+            if (!context.Interns.Any())
             {
-                new Intern {Id = 1, Name = "Vlad", RegistrationDateTime = DateTime.Parse("2021-04-04"), Location = defaultLocation },
-                new Intern {Id = 2, Name = "Radu", RegistrationDateTime = DateTime.Parse("2021-04-04"), Location = defaultLocation },
-                new Intern {Id = 3, Name = "Giulia", RegistrationDateTime = DateTime.Parse("2021-03-04"), Location = defaultLocation},
-            };
-            context.Interns.AddRange(interns);
-            context.SaveChanges();
+                var interns = new Intern[]
+                {
+                    new Intern {Id = 1, Name = "Vlad", RegistrationDateTime = DateTime.Parse("2021-04-04"), Location = defaultLocation },
+                    new Intern {Id = 2, Name = "Radu", RegistrationDateTime = DateTime.Parse("2021-04-04"), Location = defaultLocation },
+                    new Intern {Id = 3, Name = "Giulia", RegistrationDateTime = DateTime.Parse("2021-03-04"), Location = defaultLocation},
+                };
+
+                context.Interns.AddRange(interns);
+                context.SaveChanges();
+            }
         }
     }
 }

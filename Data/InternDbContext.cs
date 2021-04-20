@@ -15,6 +15,7 @@ namespace InternshippClass.Data
         }
 
         public DbSet<Intern> Interns { get; set; }
+
         public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,8 +23,8 @@ namespace InternshippClass.Data
             modelBuilder.Entity<Intern>()
                 .HasOne(_ => _.Location)
                 .WithMany(_ => _.LocalInterns)
-                .HasForeignKey("locationId");
-                //.IsRequired();
+                .HasForeignKey("locationId")
+                .IsRequired();
         }
     }
 }
