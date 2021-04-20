@@ -1,11 +1,10 @@
-﻿using InternshippClass.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using InternshippClass.Data;
 using InternshippClass.Hubs;
 using InternshippClass.Models;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InternshippClass.Services
 {
@@ -33,17 +32,6 @@ namespace InternshippClass.Services
             return intern;
         }
 
-        private Location GetDefaultLocation()
-        {
-            if (defaultLocation == null)
-            {
-                var defaultLocationName = configuration["DefaultLocation"];
-                defaultLocation = db.Locations.Where(_ => _.Name == defaultLocationName).OrderBy(_ => _.Id).FirstOrDefault();
-            }
-
-            return defaultLocation;
-        }
-
         public Intern GetMemberById(int id)
         {
             var intern = db.Find<Intern>(id);
@@ -60,7 +48,11 @@ namespace InternshippClass.Services
         public void RemoveMember(int id)
         {
             var intern = GetMemberById(id);
-            if (intern == null) return;
+            if (intern == null)
+            {
+                return;
+            }
+
             db.Remove<Intern>(intern);
             db.SaveChanges();
         }
@@ -70,6 +62,17 @@ namespace InternshippClass.Services
             db.Update<Intern>(intern);
             intern.RegistrationDateTime = DateTime.Now;
             db.SaveChanges();
+        }
+
+        private Location GetDefaultLocation()
+        {
+            if (defaultLocation == null)
+            {
+                var defaultLocationName = configuration["DefaultLocation"];
+                defaultLocation = db.Locations.Where(_ => _.Name == defaultLocationName).OrderBy(_ => _.Id).FirstOrDefault();
+            }
+
+            return defaultLocation;
         }
     }
 }

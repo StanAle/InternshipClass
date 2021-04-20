@@ -20,6 +20,5 @@ namespace InternshippClass.Models
 
         [JsonIgnore]
         public List<Intern> LocalInterns { get; set; }
-
     }
 }
