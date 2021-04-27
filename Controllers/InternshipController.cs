@@ -18,6 +18,7 @@ namespace InternshippClass.Controllers
     {
         private readonly IInternshipService intershipService;
         private IHubContext<MessageHub> hubContext;
+
         public InternshipController(IInternshipService intershipService, IHubContext<MessageHub> hubContext)
         {
             this.intershipService = intershipService;

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InternshippClass.Models;
+using InternshippClass.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,35 @@ using System.Threading.Tasks;
 
 namespace InternshippClass.Controllers
 {
-    public class EmployeeController: ControllerBase
+    [Route("employee/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
     {
+        private readonly EmployeeDBService employeeDbService;
+
+        public EmployeeController(EmployeeDBService employeeDbService)
+        {
+            this.employeeDbService = employeeDbService;
+        }
+
+        [HttpGet]
+        public IList<Employee> Get()
+        {
+            return employeeDbService.GetEmployee();
+        }
+
+        // GET employee/<InternshipController>/5
+        [HttpGet("{id}")]
+        public Employee Get(int id)
+        {
+            return employeeDbService.GetEmployeeById(id);
+        }
+
+        // POST employee/<InternshipController>
+        [HttpPost]
+        public void Post([FromBody] Employee employee)
+        {
+            var newEmployee = employeeDbService.AddEmployee(employee);
+        }
     }
 }
