@@ -1,10 +1,11 @@
-﻿using InternshippClass.Data;
-using InternshippClass.Models;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshippClass.Data;
+using InternshippClass.Models;
+using Microsoft.Extensions.Configuration;
+
 
 namespace InternshippClass.Services
 {

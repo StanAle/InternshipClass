@@ -1,6 +1,6 @@
-﻿using InternshippClass.Hubs;
+﻿using System.Collections.Generic;
+using InternshippClass.Hubs;
 using InternshippClass.Models;
-using System.Collections.Generic;
 
 namespace InternshippClass.Services
 {

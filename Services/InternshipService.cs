@@ -8,7 +8,7 @@ namespace InternshippClass.Services
 {
     public class InternshipService : IInternshipService
     {
-        private readonly InternshipClass _internshipClass = new();
+        private readonly InternshipClass _internshipClass = new ();
 
         public void RemoveMember(int id)
         {

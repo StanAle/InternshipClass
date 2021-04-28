@@ -48,7 +48,7 @@ namespace InternshippClass
 
             services.AddControllersWithViews();
             services.AddScoped<IInternshipService, InternshipDBService>();
-            services.AddScoped< EmployeeDBService>();
+            services.AddScoped<EmployeeDBService>();
             services.AddSingleton<MessageService>();
             services.AddSwaggerGen(c =>
             {

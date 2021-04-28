@@ -48,8 +48,8 @@ namespace InternshippClass.Data
                 },
                 new Project
                 {
-                    Name = "Multiplication table", 
-                    StartDate = DateTime.Parse("2020-02-01"), 
+                    Name = "Multiplication table",
+                    StartDate = DateTime.Parse("2020-02-01"),
                     Interns = new Intern[]
                     {
                         context.Interns.Single(_ => _.Name == "Liova"),
@@ -65,7 +65,7 @@ namespace InternshippClass.Data
             {
                 new Employee
                 {
-                    FirstName = "Vlad", LastName = "Gogu", Birthdate = DateTime.Parse("1999-09-14"), Email = "vladgogu14@gmail.com", Gender="Male",Picture="picture"
+                    FirstName = "Vlad", LastName = "Gogu", Birthdate = DateTime.Parse("1999-09-14"), Email = "vladgogu14@gmail.com", Gender = "Male", Picture = "picture",
                 },
             };
             context.Employees.AddRange(employees);

@@ -1,10 +1,10 @@
-﻿using InternshippClass.Models;
-using InternshippClass.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshippClass.Models;
+using InternshippClass.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InternshippClass.Controllers
 {
