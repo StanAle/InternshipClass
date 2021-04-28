@@ -17,15 +17,17 @@ namespace InternshippClass.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IInternshipService intershipService;
+        private readonly EmployeeDBService employeeDBService;
         private readonly MessageService messageService;
         private IHubContext<MessageHub> hubContext;
 
-        public HomeController(ILogger<HomeController> logger, IInternshipService intershipService, IHubContext<MessageHub> hubContext, MessageService messageService)
+        public HomeController(ILogger<HomeController> logger, IInternshipService intershipService, IHubContext<MessageHub> hubContext, MessageService messageService, EmployeeDBService employeeDBService)
         {
             _logger = logger;
             this.intershipService = intershipService;
             this.hubContext = hubContext;
             this.messageService = messageService;
+            this.employeeDBService = employeeDBService;
         }
 
         public IActionResult Index()
@@ -42,6 +44,11 @@ namespace InternshippClass.Controllers
         public IActionResult Chat()
         {
             return View(messageService.GetMessages());
+        }
+
+        public IActionResult Employees()
+        {
+            return View(employeeDBService.GetEmployees());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -22,7 +22,7 @@ namespace InternshippClass.Controllers
         [HttpGet]
         public IList<Employee> Get()
         {
-            return employeeDbService.GetEmployee();
+            return employeeDbService.GetEmployees();
         }
 
         // GET employee/<InternshipController>/5

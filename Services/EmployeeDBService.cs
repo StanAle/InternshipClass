@@ -6,7 +6,6 @@ using InternshippClass.Data;
 using InternshippClass.Models;
 using Microsoft.Extensions.Configuration;
 
-
 namespace InternshippClass.Services
 {
     public class EmployeeDBService
@@ -44,7 +43,7 @@ namespace InternshippClass.Services
             return db.Find<Employee>(id);
         }
 
-        public IList<Employee> GetEmployee()
+        public IList<Employee> GetEmployees()
         {
             var employee = db.Employees.ToList();
             return employee;
